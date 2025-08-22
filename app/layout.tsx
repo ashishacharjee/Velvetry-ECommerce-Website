@@ -4,6 +4,7 @@ import { Roboto, Roboto_Mono } from "next/font/google"
 import "./globals.css"
 import { CartProvider } from "@/contexts/cart-context"
 import { CartSidebar } from "@/components/cart-sidebar"
+import Link from "next/link"
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -32,8 +33,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${roboto.variable} ${robotoMono.variable} dark`}>
+      <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+      </head>
       <body className="font-sans antialiased">
         <CartProvider>
+          <div className="fixed top-2 left-2 z-50">
+            <Link href="/auth" className="text-sm underline">Login / Sign Up</Link>
+          </div>
           {children}
           <CartSidebar />
         </CartProvider>
